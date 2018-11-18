@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import * as actionCreators from "../../store/actions";
+import { connect } from "react-redux";
 
 // NativeBase Components
 import {
@@ -96,4 +98,8 @@ class CoffeeDetail extends Component {
   }
 }
 
-export default CoffeeDetail;
+const mapStateToProps = state => ({
+  list: state.cart.list,
+  coffeeShops: state.coffee.coffeeShops
+});
+export default connect(CoffeeDetail);

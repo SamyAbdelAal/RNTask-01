@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ImageBackground, View, TouchableOpacity } from "react-native";
-
+import { connect } from "react-redux";
+import * as actionCreators from "../../store/actions";
 // NativeBase Components
 import {
   List,
@@ -50,7 +51,10 @@ class CoffeeList extends Component {
     );
   }
   render() {
-    let ListItems = coffeeshops.map(shop => this.renderItem(shop));
+    let ListItems;
+    if (this.props.coffeeShops) {
+      ListItems = this.props.coffeeShops.map(shop => this.renderItem(shop));
+    }
     return (
       <Content>
         <List>{ListItems}</List>
@@ -59,4 +63,5 @@ class CoffeeList extends Component {
   }
 }
 
-export default CoffeeList;
+const mapStateToProps = state => ({ coffeeShops: state.coffee.coffeeShops });
+export default connect(mapStateToProps)(CoffeeList);

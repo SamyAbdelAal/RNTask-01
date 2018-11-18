@@ -1,9 +1,9 @@
 import React from "react";
 import Expo, { AppLoading } from "expo";
-
-// Component
+import { Provider } from "react-redux";
+import store from "./store";
+import { connect } from "react-redux";
 import HomePage from "./Components/HomePage";
-
 class App extends React.Component {
   constructor() {
     super();
@@ -22,8 +22,17 @@ class App extends React.Component {
     if (!this.state.fontsAreLoaded) {
       return <AppLoading />;
     }
-    return <HomePage />;
+    return (
+      <Provider store={store}>
+        <HomePage />
+      </Provider>
+    );
   }
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    getCoffeeShops: () => dispatch(actionCreators.getCoffeeShops())
+  };
+};
 
 export default App;
