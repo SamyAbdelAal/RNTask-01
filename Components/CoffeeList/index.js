@@ -27,7 +27,10 @@ class CoffeeList extends Component {
   renderItem(shop) {
     return (
       <TouchableOpacity key={shop.id} onPress={() => this.handlePress(shop)}>
-        <ImageBackground source={shop.background} style={styles.background}>
+        <ImageBackground
+          source={{ uri: shop.background }}
+          style={styles.background}
+        >
           <View style={styles.overlay} />
           <ListItem style={styles.transparent}>
             <Card style={styles.transparent}>
@@ -35,7 +38,7 @@ class CoffeeList extends Component {
                 <Left>
                   <Thumbnail
                     bordered
-                    source={shop.img}
+                    source={{ uri: shop.img }}
                     style={styles.thumbnail}
                   />
                   <Text style={styles.text}>{shop.name}</Text>
